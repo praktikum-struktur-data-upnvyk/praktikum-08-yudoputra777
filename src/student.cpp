@@ -82,6 +82,18 @@ void clear(Node*& root) {
 // =============================================================================
 
 bool insert(Node*& root, int nilai) {
+   
+   if (root == nullptr) {
+        root = new Node{nilai, nullptr, nullptr};
+ return true; // berhasil duduk
+ }
+     if (nilai < root->data)
+ return insert(root->left, nilai);
+    if (nilai > root->data)
+ return insert(root->right, nilai);
+
+   
+   
     return false;
 }
 
@@ -113,6 +125,13 @@ bool insert(Node*& root, int nilai) {
 // =============================================================================
 
 const Node* cari(const Node* root, int nilai) {
+    if (root == nullptr)
+ return nullptr; // habis, tidak ada
+ if (nilai == root->data)
+ return root; // ketemu
+ if (nilai < root->data)
+ return cari(root->left, nilai); // ke kiri
+
     return nullptr;
 }
 
@@ -146,6 +165,10 @@ const Node* cari(const Node* root, int nilai) {
 // =============================================================================
 
 const Node* minimum(const Node* root) {
+    if (root == nullptr)
+ return nullptr;
+ while (root->left != nullptr)
+ root = root->left;
     return nullptr;
 }
 
@@ -209,8 +232,23 @@ const Node* minimum(const Node* root) {
 // =============================================================================
 
 bool hapus(Node*& root, int nilai) {
-    return false;
+ if (root == nullptr) return false; // tidak ada
+    if (nilai < root->data) {
+ return hapus(root->left, nilai);
+    } else if (nilai > root->data) {
+ return hapus(root->right, nilai);
+    } else {
+ // ketemu targetnya
+     if (root->left == nullptr && root->right == nullptr) {
+ // kasus 0 anak
+ }
+     if (root->left == nullptr) { /* hanya anak kanan */ }
+    if (root->right == nullptr) { /* hanya anak kiri */ }
+ // kasus 2 anak: pakai minimum(root->right)
+ }
+ return true;
 }
+
 
 // =============================================================================
 // SOAL 3 — termahalTerbeli                                              25 poin
@@ -250,6 +288,10 @@ bool hapus(Node*& root, int nilai) {
 // =============================================================================
 
 const Node* termahalTerbeli(const Node* root, int uang) {
+  
+  
+  
+  
     return nullptr;
 }
 
